@@ -70,16 +70,15 @@ const Navbar = () => {
         <div className="navbar-links">
           <Link to="/rooms" className="nav-link">Rooms & Hotels</Link>
           <Link to="/workflow" className="nav-link">Workflow</Link>
-          {session && <Link to="/admin" className="nav-link">Admin System</Link>}
+          {session && <Link to="/admin" className="nav-link">Partner Dashboard</Link>}
         </div>
         
         <div className="navbar-actions">
           {session ? (
-            <div className="profile-dropdown-container" onMouseLeave={() => setDropdownOpen(false)}>
+            <div className="profile-dropdown-container">
               <button 
                 className="nav-profile-trigger" 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                onMouseEnter={() => setDropdownOpen(true)}
               >
                 <div className="avatar-circle">
                   {user?.name?.charAt(0)?.toUpperCase() || 'U'}

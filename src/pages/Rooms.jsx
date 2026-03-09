@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, Star, ChevronDown, Check, Info } from 'lucide-react';
+import { Search, MapPin, Star, BedDouble, User, Filter, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './Rooms.css';
 
 const Rooms = () => {
@@ -10,8 +11,8 @@ const Rooms = () => {
   const [loading, setLoading] = useState(true);
   
   // Filter States
-  const [priceFilters, setPriceFilters] = useState([]);
-  const [sortOption, setSortOption] = useState('popularity');
+  const [typeFilter, setTypeFilter] = useState('All');
+  const [sortOption, setSortOption] = useState('recommended');
 
   useEffect(() => {
     fetch('http://localhost:8000/api/rooms/')
@@ -30,17 +31,9 @@ const Rooms = () => {
   useEffect(() => {
     let result = [...rooms];
 
-    // Apply Price Filters
-    if (priceFilters.length > 0) {
-      result = result.filter(room => {
-        return priceFilters.some(range => {
-          if (range === '0-50') return room.price <= 50;
-          if (range === '50-100') return room.price > 50 && room.price <= 100;
-          if (range === '100-200') return room.price > 100 && room.price <= 200;
-          if (range === '200+') return room.price > 200;
-          return false;
-        });
-      });
+    // Apply Filter
+    if (typeFilter !== 'All') {
+        result = result.filter(r => r.type.toLowerCase().includes(typeFilter.toLowerCase()));
     }
 
     // Apply Sorting
@@ -48,135 +41,141 @@ const Rooms = () => {
       result.sort((a, b) => a.price - b.price);
     } else if (sortOption === 'price-desc') {
       result.sort((a, b) => b.price - a.price);
+    } else if (sortOption === 'recommended') {
+        // Mock recommended sort (e.g. bring Deluxe/Suite to top)
+        result.sort((a, b) => b.price - a.price); 
     }
-    // 'popularity' could just leave as default fetched order or we can sort by id
 
     setFilteredRooms(result);
-  }, [priceFilters, sortOption, rooms]);
+  }, [typeFilter, sortOption, rooms]);
 
-  const handlePriceToggle = (range) => {
-    setPriceFilters(prev => 
-      prev.includes(range) ? prev.filter(r => r !== range) : [...prev, range]
-    );
-  };
 
   const handleBook = (roomId) => {
-    navigate('/login');
+    const userStr = localStorage.getItem('user');
+    if (!userStr) {
+      navigate('/login');
+    } else {
+      navigate(`/book/${roomId}`);
+    }
   };
 
   return (
     <div className="rooms-page">
-      <div className="search-header-bar">
+      <div className="rooms-hero">
         <div className="container">
-          <h2>Hotels and more in Goa</h2>
-          <p>{filteredRooms.length} properties found</p>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rooms-hero-title"
+          >
+            Curated Suites & Rooms
+          </motion.h1>
+          <motion.p 
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 0.1 }}
+          >
+            Experience unparalleled comfort, intelligently personalized for your stay.
+          </motion.p>
         </div>
       </div>
 
       <div className="container rooms-layout">
-        {/* Sidebar Filters */}
-        <aside className="filters-sidebar">
-          <div className="filter-box">
-            <h3>Search Filters</h3>
-            
-            <div className="filter-group">
-              <label className="filter-title">Price Range per night</label>
-              <div className="checkbox-row">
-                <input type="checkbox" checked={priceFilters.includes('0-50')} onChange={() => handlePriceToggle('0-50')} /> <span>$0 - $50</span>
-              </div>
-              <div className="checkbox-row">
-                <input type="checkbox" checked={priceFilters.includes('50-100')} onChange={() => handlePriceToggle('50-100')} /> <span>$50 - $100</span>
-              </div>
-              <div className="checkbox-row">
-                <input type="checkbox" checked={priceFilters.includes('100-200')} onChange={() => handlePriceToggle('100-200')} /> <span>$100 - $200</span>
-              </div>
-              <div className="checkbox-row">
-                <input type="checkbox" checked={priceFilters.includes('200+')} onChange={() => handlePriceToggle('200+')} /> <span>$200+</span>
-              </div>
-            </div>
+        
+        {/* Recommendation Banner */}
+        <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="ai-recommendation-banner"
+        >
+            <Sparkles className="text-gold" />
+            <span><strong>Aria's Recommendation:</strong> Based on your preference for ocean views and king beds, we recommend our Deluxe Rooms and Suites.</span>
+        </motion.div>
 
-            <div className="filter-group border-top">
-              <label className="filter-title">Star Category</label>
-              <div className="checkbox-row"><input type="checkbox"/> <span>5 Star</span></div>
-              <div className="checkbox-row"><input type="checkbox"/> <span>4 Star</span></div>
-              <div className="checkbox-row"><input type="checkbox"/> <span>3 Star</span></div>
-            </div>
+        <div className="rooms-content-grid">
+            {/* Sidebar Filters */}
+            <aside className="filters-sidebar glass-card">
+              <div className="filter-box">
+                <h3 className="flex items-center gap-2 mb-4"><Filter size={20}/> Filters</h3>
+                
+                <div className="filter-group">
+                  <label className="filter-title">Room Type</label>
+                  <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="premium-select">
+                      <option value="All">All Suites & Rooms</option>
+                      <option value="Standard">Standard</option>
+                      <option value="Deluxe">Deluxe</option>
+                      <option value="Suite">Suite</option>
+                      <option value="Penthouse">Penthouse</option>
+                  </select>
+                </div>
+              </div>
+            </aside>
 
-            <div className="filter-group border-top">
-              <label className="filter-title">Popular Filters</label>
-              <div className="checkbox-row"><input type="checkbox"/> <span>Breakfast Included</span></div>
-              <div className="checkbox-row"><input type="checkbox"/> <span>Free Cancellation</span></div>
-              <div className="checkbox-row"><input type="checkbox"/> <span>Pool</span></div>
-              <div className="checkbox-row"><input type="checkbox"/> <span>Spa</span></div>
-            </div>
-          </div>
-        </aside>
+            {/* Listings */}
+            <main className="listings-area">
+              <div className="sort-bar">
+                <span className="results-count">{filteredRooms.length} Properties Available</span>
+                <span className="sort-control">
+                  Sort by: 
+                  <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className="premium-select inline-select">
+                    <option value="recommended">AI Recommended</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                  </select>
+                </span>
+              </div>
 
-        {/* Listings */}
-        <main className="listings-area">
-          <div className="sort-bar">
-            <span>Sort by: 
-              <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className="sort-select">
-                <option value="popularity">Popularity</option>
-                <option value="price-asc">Price (Low to High)</option>
-                <option value="price-desc">Price (High to Low)</option>
-              </select>
-            </span>
-          </div>
-
-          {loading ? (
-            <div className="loading-state">Loading properties...</div>
-          ) : (
-            <div className="hotel-list">
-              {filteredRooms.map(room => (
-                <div key={room.id} className="hotel-card-ota">
-                  <div className="hotel-image-col">
-                    <img src={room.image_url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'} alt={room.type} />
-                  </div>
-                  
-                  <div className="hotel-details-col">
-                    <div className="hotel-header-flex">
-                      <div>
-                        <h2>{room.type}</h2>
-                        <div className="hotel-rating">
-                          {[...Array(5)].map((_, i) => <Star key={i} size={14} className="star-fill"/>)}
-                          <span className="rating-text">4.8 (1,245 Ratings) • Excellent</span>
+              {loading ? (
+                <div className="loading-state">Curating the perfect rooms...</div>
+              ) : (
+                <div className="hotel-grid">
+                  {filteredRooms.map((room, idx) => (
+                    <motion.div 
+                        key={room.id} 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="room-card glass-card"
+                    >
+                      <div className="room-image-wrapper">
+                        <img src={room.image_url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'} alt={room.type} />
+                        {sortOption === 'recommended' && idx === 0 && (
+                            <div className="ai-badge"><Sparkles size={14}/> Top Match</div>
+                        )}
+                        <div className="dynamic-price-badge">
+                            ₹{room.price} <span className="per-night">/ night</span>
                         </div>
                       </div>
-                    </div>
-                    
-                    <p className="hotel-location"><MapPin size={14}/> South Goa, Goa • 2.5 km from center</p>
-                    
-                    <div className="hotel-features-list">
-                      <span className="hf-pill">Couples Friendly</span>
-                      <span className="hf-pill">Safe & Hygienic</span>
-                    </div>
+                      
+                      <div className="room-details">
+                        <div className="room-header-flex">
+                          <h2>{room.type}</h2>
+                          <div className="room-rating">
+                            <Star size={16} className="star-fill"/> 4.9
+                          </div>
+                        </div>
+                        
+                        <div className="room-amenities">
+                            <span className="amenity"><BedDouble size={16}/> {room.features[0] || 'King Bed'}</span>
+                            <span className="amenity"><User size={16}/> Up to 2 Guests</span>
+                        </div>
 
-                    <ul className="hotel-amenities">
-                      {room.features.slice(0, 3).map((feat, i) => (
-                        <li key={i}><Check size={14} className="text-green-600"/> {feat}</li>
-                      ))}
-                    </ul>
-                  </div>
+                        <ul className="room-features-list">
+                          {room.features.slice(1, 4).map((feat, i) => (
+                            <li key={i}>{feat}</li>
+                          ))}
+                        </ul>
 
-                  <div className="hotel-price-col">
-                    <div className="price-top">
-                      <div className="discount-badge">Save 20%</div>
-                      <p className="original-price">${(room.price * 1.25).toFixed(0)}</p>
-                      <h3 className="final-price">${room.price}</h3>
-                      <p className="tax-info">+ $15 taxes and fees</p>
-                      <p className="per-night-text">Per Night</p>
-                    </div>
-                    <div className="price-bottom">
-                      <button className="ota-book-btn" onClick={() => handleBook(room.id)}>Book Now</button>
-                      <p className="cancellation-text"><Info size={12}/> Free Cancellation</p>
-                    </div>
-                  </div>
+                        <button className="btn btn-primary w-full mt-4" onClick={() => handleBook(room.id)}>
+                            Reserve Suite
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          )}
-        </main>
+              )}
+            </main>
+        </div>
       </div>
     </div>
   );

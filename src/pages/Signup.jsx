@@ -23,19 +23,24 @@ const Signup = () => {
       
       // 1. Try Supabase Auth
       if (supabase) {
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-              data: { full_name: name }
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                data: { full_name: name }
+            }
+          });
+          
+          if (error) {
+            console.warn("Supabase Auth limits reached or error:", error.message);
+            sbErrorMsg = error.message;
+          } else if (data?.user) {
+            sbUserId = data.user.id;
           }
-        });
-        
-        if (error) {
-          console.warn("Supabase Auth limits reached or error:", error.message);
-          sbErrorMsg = error.message;
-        } else if (data?.user) {
-          sbUserId = data.user.id;
+        } catch (sbEx) {
+            console.warn("Supabase exception, falling back locally:", sbEx.message);
+            sbErrorMsg = sbEx.message;
         }
       }
       

@@ -1,142 +1,140 @@
 import React from 'react';
-import { Calendar, Users, Search, MapPin, Building2, Briefcase } from 'lucide-react';
-import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import { Sparkles, Calendar, Shield, Bot, Search, ChartBar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
     <div className="home-page">
-      {/* GoIbibo / MMT Style Hero Header */}
-      <section className="ota-hero">
-        <div className="ota-hero-bg"></div>
-        
-        <div className="container ota-hero-content">
-          <div className="ota-promos">
-            <span className="ota-tag">Great Offers</span>
-            <span className="ota-welcome">Book Hotels & Homestays</span>
+      {/* Premium Hero Section */}
+      <section className="hero-section">
+        <div className="hero-bg-overlay"></div>
+        <div className="hero-content container">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="hero-title">
+              Your Stay,<br/>Reimagined by AI
+            </h1>
+            <p className="hero-subtitle">
+              Experience the pinnacle of luxury with our intelligent concierge, dynamic room personalization, and seamless booking.
+            </p>
+            <div className="hero-actions">
+              <button className="btn btn-primary" onClick={() => navigate('/rooms')}>
+                Book Now
+              </button>
+              <button className="btn btn-outline glass" onClick={() => {
+                document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+              }}>
+                See How It Works
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* AI Features Section */}
+      <section id="features" className="features-section container">
+        <div className="section-header text-center">
+          <h2 className="section-title">The Future of Hospitality</h2>
+          <p className="section-desc">Discover how artificial intelligence elevates every moment of your stay.</p>
+        </div>
+
+        <div className="features-grid">
+          <motion.div whileHover={{ y: -5 }} className="feature-card glass-card">
+            <div className="feature-icon mb-4"><Sparkles size={32} /></div>
+            <h3>Personalized Guest Experience</h3>
+            <p>Our AI learns your preferences—from room temperature to pillow type—ensuring your room is perfect before you even arrive.</p>
+          </motion.div>
+
+          <motion.div whileHover={{ y: -5 }} className="feature-card glass-card">
+            <div className="feature-icon mb-4"><Bot size={32} /></div>
+            <h3>Intelligent Operations</h3>
+            <p>Predictive housekeeping and dynamic staffing ensure immaculate service without interrupting your peace.</p>
+          </motion.div>
+
+          <motion.div whileHover={{ y: -5 }} className="feature-card glass-card">
+            <div className="feature-icon mb-4"><ChartBar size={32} /></div>
+            <h3>Dynamic Pricing & Analytics</h3>
+            <p>Benefit from smart pricing algorithms that align with real-time demand, offering you the best value for your dates.</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How It Works Timeline */}
+      <section className="timeline-section">
+        <div className="container">
+          <div className="section-header text-center">
+            <h2 className="section-title">Seamless AI Booking Flow</h2>
           </div>
           
-          <h1 className="ota-hero-title">
-            Find your next stay
-          </h1>
-          <p className="ota-hero-subtitle">Search low prices on hotels, homes and much more...</p>
+          <div className="timeline">
+            <div className="timeline-step">
+              <div className="step-number">1</div>
+              <h4>Chat with Aria</h4>
+              <p>Tell our AI concierge what you're looking for.</p>
+            </div>
+            <div className="timeline-step">
+              <div className="step-number">2</div>
+              <h4>Smart Matching</h4>
+              <p>Get personalized room recommendations instantly.</p>
+            </div>
+            <div className="timeline-step">
+              <div className="step-number">3</div>
+              <h4>Auto-Preferences</h4>
+              <p>Your room settings are configured to your profile.</p>
+            </div>
+            <div className="timeline-step">
+              <div className="step-number">4</div>
+              <h4>Seamless Arrival</h4>
+              <p>Skip the desk with digital keys and smart check-in.</p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Global Search Container overlaying the hero */}
+      {/* Live AI Stats */}
+      <section className="stats-section container">
+        <div className="stats-grid glass-card">
+          <div className="stat-item">
+            <h3 className="stat-number">2,847</h3>
+            <p>Bookings Automated This Month</p>
+          </div>
+          <div className="stat-item">
+            <h3 className="stat-number">98%</h3>
+            <p>Guest Satisfaction Score</p>
+          </div>
+          <div className="stat-item">
+            <h3 className="stat-number">4.9/5</h3>
+            <p>Average AI Concierge Rating</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* Footer */}
+      <footer className="footer-section">
         <div className="container">
-          <div className="ota-search-widget">
-            
-            {/* Search Top Toggle */}
-            <div className="search-tabs">
-              <button className="tab-btn active"><Building2 size={16}/> Hotels</button>
-              <button className="tab-btn"><Building2 size={16}/> Homestays & Villas</button>
-              <button className="tab-btn"><Briefcase size={16}/> Corporates</button>
+          <div className="footer-content">
+            <div className="footer-brand">
+              <h3>The Grand Aura</h3>
+              <p>Redefining luxury through intelligence.</p>
             </div>
-
-            <div className="search-inputs-grid">
-              
-              <div className="search-field interactive-field">
-                <label>CITY, PROPERTY NAME OR LOCATION</label>
-                <div className="field-value">
-                  <span className="primary-val">Goa</span>
-                  <span className="secondary-val">India</span>
-                </div>
-              </div>
-
-              <div className="search-divider"></div>
-
-              <div className="search-field interactive-field">
-                <label>CHECK-IN</label>
-                <div className="field-value">
-                  <span className="primary-val">12 Nov <span className="text-sm font-normal">Tue</span></span>
-                </div>
-              </div>
-
-              <div className="search-divider"></div>
-
-              <div className="search-field interactive-field">
-                <label>CHECK-OUT</label>
-                <div className="field-value">
-                   <span className="primary-val">15 Nov <span className="text-sm font-normal">Fri</span></span>
-                </div>
-              </div>
-
-              <div className="search-divider"></div>
-
-              <div className="search-field interactive-field">
-                <label>ROOMS & GUESTS</label>
-                <div className="field-value">
-                   <span className="primary-val">1 Room, 2 Adults</span>
-                </div>
-              </div>
-
+            <div className="footer-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Contact Support</a>
             </div>
-
-            <button className="ota-search-btn" onClick={() => navigate('/rooms')}>
-               SEARCH
-            </button>
+          </div>
+          <div className="footer-bottom">
+            <p>&copy; 2026 The Grand Aura AI Hotel. All rights reserved.</p>
           </div>
         </div>
-      </section>
-
-      {/* Featured Offers Section */}
-      <section className="offers-section container">
-        <div className="section-head">
-          <h2>Offers Selected For You</h2>
-        </div>
-        
-        <div className="offers-grid">
-          <div className="offer-card c-blue">
-            <div className="offer-content">
-               <span className="offer-pill">DOMESTIC HOTELS</span>
-               <h3>Grab FLAT 12% OFF* on Hotels</h3>
-               <p>Enjoy a luxurious staycation</p>
-               <button className="btn-book-now">Book Now</button>
-            </div>
-          </div>
-
-          <div className="offer-card c-purple">
-            <div className="offer-content">
-               <span className="offer-pill">VILLAS & MORE</span>
-               <h3>Stayed in a Villa Yet?</h3>
-               <p>Explore gorgeous properties up to 40% OFF</p>
-               <button className="btn-book-now">Book Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Markers */}
-      <section className="features-section container">
-        <h2 className="text-center mb-section">Why Book With TravelStay?</h2>
-        
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon-wrapper bg-blue-100">
-              <span className="feature-emoji">🛡️</span>
-            </div>
-            <h3>100% Secure Payments</h3>
-            <p>Moving your card details to a secure trust-backed system.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon-wrapper bg-green-100">
-              <span className="feature-emoji">⭐</span>
-            </div>
-            <h3>Millions of Reviews</h3>
-            <p>Read verified reviews from millions of happy travelers globally.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon-wrapper bg-purple-100">
-              <span className="feature-emoji">📞</span>
-            </div>
-            <h3>24/7 Customer Support</h3>
-            <p>Our dedicated support team is available via chat, email, or phone.</p>
-          </div>
-        </div>
-      </section>
-
+      </footer>
     </div>
   );
 };

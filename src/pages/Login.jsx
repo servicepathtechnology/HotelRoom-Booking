@@ -6,8 +6,8 @@ import './Auth.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('sai@example.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -22,19 +22,24 @@ const Login = () => {
 
       // 1. Try Supabase Auth
       if (supabase) {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password
-        });
-        
-        if (error) {
-            sbErrorMsg = error.message;
-            if (error.message.includes("Email not confirmed")) {
-                sbErrorMsg = "Email not confirmed. Please click the verification link sent to your email, or disable 'Confirm email' in Supabase Auth settings.";
-            }
-            console.warn("Supabase Auth failed, falling back locally:", sbErrorMsg);
-        } else if (data?.user) {
-            sbUser = data.user;
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+          
+          if (error) {
+              sbErrorMsg = error.message;
+              if (error.message.includes("Email not confirmed")) {
+                  sbErrorMsg = "Email not confirmed. Please click the verification link sent to your email, or disable 'Confirm email' in Supabase Auth settings.";
+              }
+              console.warn("Supabase Auth failed, falling back locally:", sbErrorMsg);
+          } else if (data?.user) {
+              sbUser = data.user;
+          }
+        } catch (sbEx) {
+            console.warn("Supabase exception, falling back locally:", sbEx.message);
+            sbErrorMsg = sbEx.message;
         }
       }
       
@@ -129,7 +134,6 @@ const Login = () => {
           
           <div className="auth-footer">
             <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-            <p className="demo-hint">Demo Account: sai@example.com / password123</p>
           </div>
         </div>
       </div>
