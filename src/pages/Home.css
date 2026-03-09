@@ -1,0 +1,288 @@
+.home-page {
+    padding-bottom: 4rem;
+    background-color: var(--bg-color);
+}
+
+/* Hero Section */
+.ota-hero {
+    position: relative;
+    min-height: 480px;
+    background: linear-gradient(to right bottom, #00224f, #003580);
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.ota-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.ota-hero-content {
+    color: white;
+    margin-bottom: 6rem;
+    z-index: 10;
+    text-align: left;
+}
+
+.ota-promos {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ota-tag {
+    background: #ffb700;
+    color: #111;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.ota-welcome {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.ota-hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.ota-hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Search Widget */
+.ota-search-widget {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 1rem;
+    margin-top: -1rem;
+    /* Overlap the hero bg */
+    position: relative;
+    z-index: 20;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+.search-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: var(--bg-color);
+}
+
+.tab-btn.active {
+    background: #eef2ff;
+    color: var(--primary);
+}
+
+.search-inputs-grid {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+.search-field {
+    flex: 1;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-field:hover {
+    background: #f8fafc;
+}
+
+.search-field:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-lg);
+    flex: 1.5;
+}
+
+.search-divider {
+    width: 1px;
+    background: var(--border-color);
+}
+
+.search-field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.field-value {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.primary-val {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.secondary-val {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.ota-search-btn {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #008cff, #005ce6);
+    color: white;
+    border: none;
+    padding: 1rem 4rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 92, 230, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ota-search-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 92, 230, 0.5);
+}
+
+/* Offers Section */
+.offers-section {
+    margin-top: 6rem;
+}
+
+.section-head h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.offer-card {
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.c-blue {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+}
+
+.c-purple {
+    background: linear-gradient(135deg, #6b21a8, #a855f7);
+}
+
+.offer-pill {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.offer-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.offer-content p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.btn-book-now {
+    background: white;
+    color: var(--text-main);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+}
+
+/* Trust section */
+.features-section {
+    margin-top: 5rem;
+}
+
+.mb-section {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+@media (max-width: 1024px) {
+    .search-inputs-grid {
+        flex-direction: column;
+    }
+
+    .search-divider {
+        height: 1px;
+        width: 100%;
+    }
+
+    .search-field:first-child {
+        border-radius: 0;
+    }
+}

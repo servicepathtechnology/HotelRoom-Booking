@@ -1,0 +1,344 @@
+.rooms-page {
+    background-color: #f2f5f7;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+}
+
+.search-header-bar {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-header-bar h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+.search-header-bar p {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.rooms-layout {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: flex-start;
+}
+
+/* Sidebar */
+.filters-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.filter-box {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.filter-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.filter-group {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.filter-group.border-top {
+    border-top: 1px solid var(--border-color);
+}
+
+.filter-title {
+    display: block;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.checkbox-row input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.checkbox-row span {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Listings Area */
+.listings-area {
+    flex: 1;
+}
+
+.sort-bar {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+}
+
+.sort-select {
+    border: none;
+    font-weight: 700;
+    color: var(--primary);
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    margin-left: 0.5rem;
+}
+
+.hotel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* OTA Style Horizontal Card */
+.hotel-card-ota {
+    background: white;
+    border-radius: var(--radius-lg);
+    display: flex;
+    height: 250px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.hotel-card-ota:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+/* Three Columns: Image | Details | Price */
+.hotel-image-col {
+    width: 320px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.hotel-image-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hotel-details-col {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.hotel-header-flex h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 0.25rem;
+}
+
+.hotel-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.star-fill {
+    color: #ffb700;
+    fill: #ffb700;
+}
+
+.rating-text {
+    font-size: 0.85rem;
+    color: #005ce6;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.hotel-location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.hotel-features-list {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.hf-pill {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.hotel-amenities {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: auto;
+}
+
+.hotel-amenities li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.hotel-price-col {
+    width: 250px;
+    background: #fafbfc;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+
+.price-top {
+    padding: 1.5rem;
+}
+
+.discount-badge {
+    display: inline-block;
+    background: #ffebe5;
+    color: #de1d0b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+.original-price {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.final-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #000;
+}
+
+.tax-info {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.per-night-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.price-bottom {
+    padding: 1.5rem;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.cancellation-text {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #166534;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.ota-book-btn {
+    background: linear-gradient(90deg, #008cff, #005ce6);
+    color: white;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 92, 230, 0.3);
+}
+
+.ota-book-btn:hover {
+    box-shadow: 0 6px 16px rgba(0, 92, 230, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .rooms-layout {
+        flex-direction: column;
+    }
+
+    .filters-sidebar {
+        width: 100%;
+    }
+
+    .hotel-card-ota {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .hotel-image-col {
+        width: 100%;
+        height: 200px;
+    }
+
+    .hotel-price-col {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+    }
+}

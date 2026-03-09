@@ -1,0 +1,228 @@
+.dashboard-page {
+    padding: 3rem 1.5rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-welcome {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-avatar-large {
+    width: 5rem;
+    height: 5rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-welcome h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.user-welcome p {
+    color: var(--text-muted);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.dashboard-panel {
+    background: var(--surface-color);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.panel-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h2 {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.panel-body {
+    padding: 1.5rem;
+}
+
+.ai-panel {
+    background: linear-gradient(180deg, #fdf4ff 0%, #ffffff 100%);
+    border-color: #f3e8ff;
+}
+
+.text-purple-500 {
+    color: #a855f7;
+}
+
+.text-orange-500 {
+    color: #f97316;
+}
+
+.ai-insight-text {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.recommendation-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.rec-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.rec-icon {
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.rec-card h4 {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.rec-card p {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.ai-offers {
+    background: var(--primary-light);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px dashed #bfdbfe;
+}
+
+.ai-offers h4 {
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.ai-offers ul {
+    list-style: none;
+}
+
+.ai-offers li {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+}
+
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+.card-hover:hover {
+    background: var(--bg-color);
+    border-color: #cbd5e1;
+}
+
+.booking-info h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.booking-dates {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.confirmed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.booking-price {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.bg-primary {
+    background: var(--primary);
+}
+
+.text-white,
+.text-white h3 {
+    color: white;
+}
+
+.action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.action-btn {
+    width: 100%;
+    padding: 0.875rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

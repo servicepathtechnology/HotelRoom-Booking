@@ -1,0 +1,123 @@
+.workflow-page {
+    padding: 4rem 1.5rem;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.workflow-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.workflow-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.workflow-header p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+}
+
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    gap: 1rem;
+}
+
+.workflow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 150px;
+    opacity: 0.4;
+    transition: all 0.5s ease;
+    filter: grayscale(100%);
+}
+
+.workflow-node.active {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+.workflow-node.pulsing .node-icon {
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0.2);
+}
+
+.node-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    margin-bottom: 1rem;
+    transition: all 0.5s ease;
+}
+
+.workflow-node.active .node-icon {
+    background: var(--primary);
+    color: white;
+}
+
+.workflow-node h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.workflow-node p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.workflow-arrow {
+    color: var(--border-color);
+    transition: all 0.5s ease;
+}
+
+.workflow-arrow.active {
+    color: var(--primary);
+}
+
+.workflow-controls {
+    margin-top: 5rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .workflow-container {
+        flex-direction: column;
+    }
+
+    .workflow-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+    }
+}

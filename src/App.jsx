@@ -1,0 +1,36 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Rooms from './pages/Rooms';
+import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
+import DemoWorkflow from './pages/DemoWorkflow';
+import Profile from './pages/Profile';
+import Chatbot from './components/Chatbot';
+
+function App() {
+  return (
+    <Router>
+      <div className="app-container">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/rooms" element={<Rooms />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/workflow" element={<DemoWorkflow />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </main>
+        <Chatbot />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
