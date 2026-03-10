@@ -33,8 +33,8 @@ const Dashboard = () => {
   const fetchDashboardData = async (userId) => {
     try {
       const [recRes, bookRes] = await Promise.all([
-        fetch(`http://localhost:8000/api/ai/recommendations/${userId}`),
-        fetch(`http://localhost:8000/api/bookings/user/${userId}`)
+        fetch(`https://hotel-backend-coral.vercel.app/api/ai/recommendations/${userId}`),
+        fetch(`https://hotel-backend-coral.vercel.app/api/bookings/user/${userId}`)
       ]);
       
       if (recRes.ok) {
@@ -60,7 +60,7 @@ const Dashboard = () => {
   const handleSaveProfile = async () => {
     try {
       setUpdateMsg('Updating...');
-      const res = await fetch(`http://localhost:8000/api/auth/user/${user.id}`, {
+      const res = await fetch(`https://hotel-backend-coral.vercel.app/api/auth/user/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: editName, email: editEmail })

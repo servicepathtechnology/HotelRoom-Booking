@@ -15,7 +15,7 @@ const Rooms = () => {
   const [sortOption, setSortOption] = useState('recommended');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/rooms/')
+    fetch('https://hotel-backend-coral.vercel.app/api/rooms/')
       .then(res => res.json())
       .then(data => {
         setRooms(data);

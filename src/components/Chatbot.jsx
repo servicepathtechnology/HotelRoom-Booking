@@ -31,7 +31,7 @@ const Chatbot = () => {
     setIsTyping(true);
 
     try {
-      const res = await fetch(`http://localhost:8000/api/ai/chat?message=${encodeURIComponent(userMsg.text)}`, {
+      const res = await fetch(`https://hotel-backend-coral.vercel.app/api/ai/chat?message=${encodeURIComponent(userMsg.text)}`, {
         method: 'POST' // using query param for simple demo
       });
       const data = await res.json();

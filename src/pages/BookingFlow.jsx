@@ -27,7 +27,7 @@ const BookingFlow = () => {
     }
 
     // Fetch room details (mocking it from all rooms for demo)
-    fetch('http://localhost:8000/api/rooms/')
+    fetch('https://hotel-backend-coral.vercel.app/api/rooms/')
       .then(res => res.json())
       .then(data => {
         const found = data.find(r => r.id.toString() === roomId.toString());
@@ -85,7 +85,7 @@ const BookingFlow = () => {
         }
 
         // 2. Always sink to local API
-        const res = await fetch('http://localhost:8000/api/bookings/', {
+        const res = await fetch('https://hotel-backend-coral.vercel.app/api/bookings/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookingData)

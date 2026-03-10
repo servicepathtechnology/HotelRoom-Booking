@@ -46,7 +46,7 @@ const Signup = () => {
       
       // 2. Fallback / Sync with Local Backend
       // We ALWAYS create the user locally so if Supabase blocks login later (e.g. email unconfirmed), local works.
-      const res = await fetch('http://localhost:8000/api/auth/signup', {
+      const res = await fetch('https://hotel-backend-coral.vercel.app/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })

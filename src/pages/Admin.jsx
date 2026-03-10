@@ -24,9 +24,9 @@ const Admin = () => {
   const fetchAdminData = async () => {
     try {
       const [metricsRes, leadsRes, insightsRes] = await Promise.all([
-        fetch('http://localhost:8000/api/admin/metrics'),
-        fetch('http://localhost:8000/api/admin/leads'),
-        fetch('http://localhost:8000/api/ai/insights')
+        fetch('https://hotel-backend-coral.vercel.app/api/admin/metrics'),
+        fetch('https://hotel-backend-coral.vercel.app/api/admin/leads'),
+        fetch('https://hotel-backend-coral.vercel.app/api/ai/insights')
       ]);
       
       const metricsData = await metricsRes.json();
